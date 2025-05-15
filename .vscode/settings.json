@@ -1,0 +1,22 @@
+{
+  "cSpell.words": [
+    "hday",
+    "hostip",
+    "lakibeam",
+    "remappings",
+    "richbeam",
+    "rviz",
+    "scanfreq",
+    "sensorip"
+  ],
+  "files.associations": {
+    "*.repos": "yaml",
+    "*.world": "xml",
+    "*.xacro": "xml",
+    "initializer_list": "cpp",
+    "string_view": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
+  }
+}

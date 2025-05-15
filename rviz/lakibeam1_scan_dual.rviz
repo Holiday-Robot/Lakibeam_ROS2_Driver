@@ -77,7 +77,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Flat Squares
-      Topic: /scan0
+      Topic: /hday/sensor/lidar/scan0
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -105,7 +105,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Flat Squares
-      Topic: /scan1
+      Topic: /hday/sensor/lidar/scan1
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true

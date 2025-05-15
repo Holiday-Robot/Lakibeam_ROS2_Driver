@@ -1,4 +1,4 @@
-#include <rclcpp/rclcpp.hpp> 
+#include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
 
 #include <stdio.h>
@@ -88,7 +88,7 @@ protected:
 		sensor_config(sensorip, "/api/v1/sensor/scanfreq", scanfreq);
 		sensor_config(sensorip, "/api/v1/sensor/laser_enable", laser_enable);
 		sensor_config(sensorip, "/api/v1/sensor/scan_range/start", scan_range_start);
-		sensor_config(sensorip, "/api/v1/sensor/scan_range/stop", scan_range_stop);		
+		sensor_config(sensorip, "/api/v1/sensor/scan_range/stop", scan_range_stop);
 		RCLCPP_INFO(get_logger(),"scan_config1");
 
 	};
@@ -136,7 +136,7 @@ protected:
 						{
 							scan_end = scan_begin;
 							scan_begin = rclcpp::Clock().now();
-						}			
+						}
 						if((MSOP_Data.BlockID[1].Azimuth - MSOP_Data.BlockID[0].Azimuth) > 0)
 						{
 							resolution = (MSOP_Data.BlockID[1].Azimuth - MSOP_Data.BlockID[0].Azimuth) / 16;
@@ -180,7 +180,7 @@ protected:
 					}
 				}
 			}
-            
+
 
 			if(scan_vec_ready == 1)
 			{
@@ -226,7 +226,7 @@ protected:
 				}
 
 				scan_pub->publish(scan);
-				RCLCPP_INFO(get_logger(), "New topic %s published, total data points: %d", output_topic.c_str(), num_readings);
+				RCLCPP_DEBUG(get_logger(), "New topic %s published, total data points: %d", output_topic.c_str(), num_readings);
 				scan_vec.clear();
 				scan_vec_ready = 0;
 			}
@@ -240,7 +240,7 @@ private:
     bool inverted;
     rclcpp::Publisher<sensor_msgs::msg::LaserScan>::SharedPtr scan_pub;
     rclcpp::Time scan_begin, scan_end;
-    struct sockaddr_in ser_addr, clent_addr; 
+    struct sockaddr_in ser_addr, clent_addr;
 	int i = 0, j = 12, points_cnt;
 	int sockfd;
 	unsigned int last_timestamp_;
@@ -250,10 +250,10 @@ private:
 int main(int argc, char **argv)
 {
 	rclcpp::init(argc, argv);
-	rclcpp::Rate rate(30); 
+	rclcpp::Rate rate(30);
 	auto node = make_shared<lakibeam1_scan>();
 	rclcpp::spin(node);
-	rclcpp::shutdown();	
+	rclcpp::shutdown();
 
 	return 0;
 }
