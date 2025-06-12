@@ -42,11 +42,11 @@ def generate_launch_description():
     )
     declare_output_topic0_cmd = DeclareLaunchArgument(
         "output_topic0",
-        default_value="scan0",
+        default_value="/hday/sensor/lidar/scan0",
     )
     declare_output_topic1_cmd = DeclareLaunchArgument(
         "output_topic1",
-        default_value="scan1",
+        default_value="/hday/sensor/lidar/scan1",
     )
     declare_inverted_cmd = DeclareLaunchArgument(
         "inverted",
@@ -126,12 +126,6 @@ def generate_launch_description():
                 "scan_range_stop": scan_range_stop,
             }
         ],
-        remappings=[
-            (
-                "/scan0",
-                "/hday/sensor/lidar/scan0",
-            ),
-        ],
         output="screen",
     )
 
@@ -155,16 +149,10 @@ def generate_launch_description():
                 "scan_range_stop": scan_range_stop,
             }
         ],
-        remappings=[
-            (
-                "/scan1",
-                "/hday/sensor/lidar/scan1",
-            ),
-        ],
         output="screen",
     )
 
-    transform_remappings = [('/tf', 'tf'), ('/tf_static', 'tf_static')]
+    transform_remappings = [("/tf", "tf"), ("/tf_static", "tf_static")]
 
     lidar0_static_tf_node = Node(
         condition=IfCondition(use_tf),
@@ -174,8 +162,8 @@ def generate_launch_description():
         output="screen",
         remappings=transform_remappings,
         # [x, y, z, yaw, pitch, roll, frame_id, child_frame_id]
-        arguments=["0.05", "0.0", "0.0", "0.0", "0.0", "0.0"] +
-                    ["base_link", "laser0"]
+        arguments=["0.172", "0.0", "0.0", "0.0", "0.0", "0.0"]
+        + ["base_link", "laser0"],
     )
 
     lidar1_static_tf_node = Node(
@@ -186,8 +174,8 @@ def generate_launch_description():
         output="screen",
         remappings=transform_remappings,
         # [x, y, z, yaw, pitch, roll, frame_id, child_frame_id]
-        arguments=["-0.05", "0.0", "0.0", "3.1415926535", "0.0", "0.0"] +
-                    ["base_link", "laser1"]
+        arguments=["-0.172", "0.0", "0.0", "3.1415926535", "0.0", "0.0"]
+        + ["base_link", "laser1"],
     )
 
     rviz_node = Node(

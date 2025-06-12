@@ -34,7 +34,7 @@ def generate_launch_description():
     )
     declare_output_topic_cmd = DeclareLaunchArgument(
         "output_topic",
-        default_value="scan",
+        default_value="/hday/sensor/lidar/scan",
     )
     declare_inverted_cmd = DeclareLaunchArgument(
         "inverted",
@@ -105,12 +105,6 @@ def generate_launch_description():
                 "scan_range_start": scan_range_start,
                 "scan_range_stop": scan_range_stop,
             }
-        ],
-        remappings=[
-            (
-                "/scan",
-                "/hday/sensor/lidar/scan",
-            ),
         ],
         output="screen",
     )
